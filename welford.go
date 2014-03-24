@@ -61,7 +61,7 @@ func (s *Stats) Reset() {
 }
 
 // Add feeds a new value into the Stats.
-func (s *Stats) Add(val float64) {
+func (s *Stats) Add(val float64) *Stats {
 	if s.count == 0 {
 		s.min = val
 		s.max = val
@@ -77,4 +77,5 @@ func (s *Stats) Add(val float64) {
 	old_mean := s.mean
 	s.mean += (val - old_mean) / float64(s.count)
 	s.s += (val - old_mean) * (val - s.mean)
+	return s
 }
